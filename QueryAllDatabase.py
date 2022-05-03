@@ -9,7 +9,7 @@ import enum
 ref = 'hg38'
 date_of_query = datetime.date.today().strftime("%Y%m%d")
 
-Mviewer_loc = pathlib.Path('C:\\Users\\User\\Desktop\\MViewer_20220426\\MViewer\\MViewer.exe')
+Mviewer_loc = pathlib.Path(os.getcwd()) / 'MViewer.exe'
 
 mviewer_postfix = f'.{ref}_multianno.Q{date_of_query}_cli.mviewer.tsv'
 
@@ -21,7 +21,7 @@ def config_argparse():
     parser = argparse.ArgumentParser(description='call query all database in batch')
     parser.add_argument('path', type=str, help='path to target directory')
     parser.add_argument('-ref', choices=['hg19', 'hg38'], default='hg38')
-    parser.add_argument('--ncpus', type=int, default=os.cpu_count())
+    parser.add_argument('--ncpus', type=int, default=1)
     args = parser.parse_args()
     return args
 
